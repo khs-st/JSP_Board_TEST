@@ -39,7 +39,7 @@ CREATE TABLE `bbs` (
 
 LOCK TABLES `bbs` WRITE;
 /*!40000 ALTER TABLE `bbs` DISABLE KEYS */;
-INSERT INTO `bbs` VALUES (1,'test','khs','2020-08-23 12:44:13','test',1);
+INSERT INTO `bbs` VALUES (1,'test','khs','2020-08-23 12:44:13','test',1),(2,'test2','khs','2020-08-23 13:22:14','test2',1),(3,'글쓰기 출력 화면까지 구현!(게시글 내용은 볼 수 없다.)','khs','2020-08-23 13:27:56','하지만 게시글 내용은 못본다.',1),(4,'4','khs','2020-08-23 13:36:05','4',1),(5,'5','khs','2020-08-23 13:36:09','5',1),(6,'6','khs','2020-08-23 13:36:14','6',1),(7,'7','khs','2020-08-23 13:36:18','7',1),(8,'8','khs','2020-08-23 13:36:21','8',1),(9,'9','khs','2020-08-23 13:36:25','9',1),(10,'10','khs','2020-08-23 13:36:30','10',1),(11,'다음페이지로 넘어감 nextPage(pageNumber+1)','khs','2020-08-23 13:37:00','다음페이지로! ',1);
 /*!40000 ALTER TABLE `bbs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-23 12:46:35
+-- Dump completed on 2020-08-23 13:53:25
