@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
 <%@ page import="bbs.Bbs"%>
-<%@ page import="java.util.ArrayList"%>
+<%@ page import="bbs.BbsDAO"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -22,12 +22,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 
 <title>프로젝트 JSP 게시판 웹사이트</title>
-<style type="text/css">
-a, a:hover {
-	color: #000000;
-	text-decoration: none;
-}
-</style>
+
 </head>
 
 <body>
@@ -36,13 +31,20 @@ a, a:hover {
 		String userID = null; //그렇지 않으면 null값
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
+	}
 
+	int bbsID = 0;
+	if (request.getParameter("bbsID") != null) {
+		bbsID = Integer.parseInt(request.getParameter("bbsID"));
 	}
-	//파라미터로 pageNumber가 넘어왔다면 pageNumber에는 해당 파라미터의 값을 넣어줄 수 있또록 한다. 
-	int pageNumber = 1; //기본 페이지를 의미한다.
-	if (request.getParameter("pageNumber") != null) {
-		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+	if (bbsID == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('선택한 글이 없습니다.')");
+		script.println("location.href='bbs.jsp'"); //이미 로그인이 되면 또 로그인 못하게 해줌
+		script.println("</script>");
 	}
+	Bbs bbs = new BbsDAO().getBbs(bbsID); //유효한 글이라면 bbsID가 0이아니므로 구체적인 정보를 Bbs란 인스턴스안에 담을 수 있도록 해준다.
 	%>
 
 	<!-- 네비게이션  -->
@@ -110,6 +112,7 @@ a, a:hover {
 		</div>
 
 	</nav>
+
 	<!-- 게시판 화면 -->
 	<div class="container">
 		<div class="row">
@@ -117,47 +120,51 @@ a, a:hover {
 				style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">번호</th>
-						<th style="background-color: #eeeeee; text-align: center;">제목</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+						<th colspan="3"
+							style="background-color: #eeeeee; text-align: center;">게시판 글
+							보기</th>
 					</tr>
 				</thead>
 				<tbody>
-					<%
-						BbsDAO bbsDAO = new BbsDAO();
-					ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
-					for (int i = 0; i < list.size(); i++) {
-					%>
-
 					<tr>
-						<td><%=list.get(i).getBbsID()%></td>
-						<td><a href="view.jsp?bbsID=<%=list.get(i).getBbsID()%>"><%=list.get(i).getBbsTitle()%></a></td>
-						<td><%=list.get(i).getUserID()%></td>
-						<td><%=list.get(i).getBbsDate().substring(0, 11) + list.get(i).getBbsDate().substring(11, 13) + "시"
-		+ list.get(i).getBbsDate().substring(14, 16) + "분"%></td>
-
+						<td style="width: 20%;">글 제목</td>
+						<td colspan="2"><%=bbs.getBbsTitle()%></td>
 					</tr>
-					<%
-						}
-					%>
+					<tr>
+						<td>작성자</td>
+						<td colspan="2"><%=bbs.getUserID()%></td>
+					</tr>
+					<tr>
+						<td>작성일자</td>
+						<td colspan="2"><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시"
+		+ bbs.getBbsDate().substring(14, 16) + "분"%></td>
+					</tr>
+					<tr>
+					<!-- 특수문자 및 공백 출력시키기 -->
+						<td>내용</td>
+						<td colspan="2">
+							<div class="bbs-content" style="min-height: 200px; text-align: left">
+								<%= bbs.getBbsContent().replaceAll(" ", "&nbsp")
+								.replaceAll("<", "&lt")
+								.replaceAll(">", "&gt")
+								.replaceAll("\n", "<br>") %>
+							</div>
+						</td>
+					</tr>
+					</tr>
 				</tbody>
 			</table>
+			<!-- 목록으로 돌아갈 수 있게 버튼 만들기, 현재 글로 들어온 작성자가 본인일때   a태그를 이용한 수정 삭제 가능하게 함 -->
+			<a href="bbs.jsp" class="btn btn-primary">목록</a>
 			<%
-				if (pageNumber != 1) {
+				if (userID != null && userID.equals(bbs.getUserID())) {
 			%>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber-1%>"
-				class="btn btn-success btn-arraw-left">이전</a>
-			<%
-				}
-			if (bbsDAO.nextPage(pageNumber+1)) {
-			%>
-			<a href="bbs.jsp?pageNumber=<%=pageNumber+1%>"
-				class="btn btn-success btn=arraw-left">다음</a>
+			<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
+			<a href="deleteAction.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">삭제</a>
 			<%
 				}
 			%>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<input type="submit" class="btn btn-primary pull-right" value="글쓰기"></a>
 		</div>
 	</div>
 

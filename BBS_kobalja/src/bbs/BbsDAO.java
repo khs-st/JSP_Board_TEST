@@ -78,7 +78,7 @@ public class BbsDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10); // getNext같은 경우는 그 다음으로 작성될 글의 번호이기 때문에 예를 들면 게시글이 5개이면
-			rs=pstmt.executeQuery();										// getNext했을때 6이나오고 pageNumber가 1이므로 1부터 6까지 나옴
+			rs = pstmt.executeQuery(); // getNext했을때 6이나오고 pageNumber가 1이므로 1부터 6까지 나옴
 			while (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
@@ -100,7 +100,7 @@ public class BbsDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return true;
 			}
@@ -110,4 +110,25 @@ public class BbsDAO {
 		return false;
 	}
 
+	public Bbs getBbs(int bbsID) {
+		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID); //bbsID가 어떤 값을 넣어서 그 숫자에 해당하는 값을 불러오는 역할.
+			rs=pstmt.executeQuery();
+			if (rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+				return bbs;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
