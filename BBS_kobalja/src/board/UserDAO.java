@@ -12,9 +12,9 @@ public class UserDAO {
 
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3557/kobalja?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			String dbURL = "jdbc:mysql://localhost:3306/kobalja?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			String dbID = "root";
-			String dbPassword = "3557";
+			String dbPassword = "0506";
 			Class.forName("com.mysql.cj.jdbc.Driver"); // lib에 추가해야함
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
