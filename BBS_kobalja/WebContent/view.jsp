@@ -168,7 +168,8 @@
 			<%
 				}
 			%>
-			<input type="submit" class="btn btn-primary pull-right" value="글쓰기"></a>
+			<!-- 글쓰기 버튼 불필요 -->
+			<!-- <input type="submit" class="btn btn-primary pull-right" value="글쓰기"></a> -->
 		</div>
 	</div>
 
