@@ -72,6 +72,7 @@ public class BbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 
+//페이징처리
 	public ArrayList<Bbs> getList(int pageNumber) {
 		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable=1 ORDER BY bbsID DESC LIMIT 10";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
@@ -114,8 +115,8 @@ public class BbsDAO {
 		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, bbsID); //bbsID가 어떤 값을 넣어서 그 숫자에 해당하는 값을 불러오는 역할.
-			rs=pstmt.executeQuery();
+			pstmt.setInt(1, bbsID); // bbsID가 어떤 값을 넣어서 그 숫자에 해당하는 값을 불러오는 역할.
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
@@ -130,5 +131,34 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+// 글 수정
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		String SQL = "update BBS set bbsTitle=?, bbsContent=? where bbsID=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+	}
+
+	// 글 삭제
+	public int delete(int bbsID) {
+		String SQL = "update BBS set bbsAvailable=0 where bbsID=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
 	}
 }

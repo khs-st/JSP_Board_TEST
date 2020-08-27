@@ -126,13 +126,11 @@
 					</tr>
 				</thead>
 				<tbody>
-				<!--특수문자 및 공백도 출력시키게 함으로써 XSS공격해킹기법을 막아줄 수 있다. -->
+					<!--특수문자 및 공백도 출력시키게 함으로써 XSS공격해킹기법을 막아줄 수 있다. -->
 					<tr>
 						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%= bbs.getBbsTitle().replaceAll(" ", "&nbsp")
-								.replaceAll("<", "&lt")
-								.replaceAll(">", "&gt")
-								.replaceAll("\n", "<br>") %></td>
+						<td colspan="2"><%=bbs.getBbsTitle().replaceAll(" ", "&nbsp").replaceAll("<", "&lt").replaceAll(">", "&gt").replaceAll("\n",
+		"<br>")%></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -144,14 +142,13 @@
 		+ bbs.getBbsDate().substring(14, 16) + "분"%></td>
 					</tr>
 					<tr>
-					<!-- 특수문자 및 공백 출력시키기-->
+						<!-- 특수문자 및 공백 출력시키기-->
 						<td>내용</td>
 						<td colspan="2">
-							<div class="bbs-content" style="min-height: 200px; text-align: left">
-								<%= bbs.getBbsContent().replaceAll(" ", "&nbsp")
-								.replaceAll("<", "&lt")
-								.replaceAll(">", "&gt")
-								.replaceAll("\n", "<br>") %>
+							<div class="bbs-content"
+								style="min-height: 200px; text-align: left">
+								<%=bbs.getBbsContent().replaceAll(" ", "&nbsp").replaceAll("<", "&lt").replaceAll(">", "&gt").replaceAll("\n",
+		"<br>")%>
 							</div>
 						</td>
 					</tr>
@@ -164,7 +161,9 @@
 				if (userID != null && userID.equals(bbs.getUserID())) {
 			%>
 			<a href="update.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">수정</a>
-			<a href="deleteAction.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">삭제</a>
+			<!-- 삭제 버튼 클릭 시 삭제하시겠습니까 메시지 띄우기 -->
+			<a onclick="return confirm('삭제하시겠습니까?')"
+				href="deleteAction.jsp?bbsID=<%=bbsID%>" class="btn btn-primary">삭제</a>
 			<%
 				}
 			%>
