@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>프로젝트 게시판 사이트</title>
+<link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
 	<script>

@@ -17,7 +17,7 @@
 <!-- 스타일시트 참조  -->
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
-
+<link rel="stylesheet" href="css/custom.css">
 <title>프로젝트 게시판 웹사이트</title>
 
 </head>
@@ -96,6 +96,45 @@
 		</div>
 
 	</nav>
+	<!-- 점보트론 -->
+	<div class="container">
+		<div class="jumbotron">
+			<div class="container">
+				<h1>웹 사이트 소개</h1>
+				<p>부트스트랩 이용한 JSP 웹 사이트</p>
+				<a class="btn btn-primary btn-pull" href="kobalja2020@tistory.com"
+					role="button">관리자에 대해 알아보기</a>
+			</div>
+		</div>
+	</div>
+	<!-- 캐러샐이미지 -->
+	<div class="container">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="images/0.jpg">
+				</div>
+				<div class="item">
+					<img src="images/1.jpg">
+				</div>
+				<div class="item">
+					<img src="images/2.jpg">
+				</div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a> 
+			<a class="right carousel-control" href="#myCarousel"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
 	<!-- 애니매이션 담당 JQUERY -->
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

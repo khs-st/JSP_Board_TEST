@@ -20,7 +20,7 @@
 <!-- 스타일시트 참조  -->
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
-
+<link rel="stylesheet" href="css/custom.css">
 <title>프로젝트 JSP 게시판 웹사이트</title>
 <style type="text/css">
 a, a:hover {
