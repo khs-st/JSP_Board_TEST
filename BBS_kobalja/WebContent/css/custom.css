@@ -1,7 +1,11 @@
-@import url(https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap)
-	;
+@import url(https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap);
 
-
+.jumbotron{
+	background-color:#b7b7ff;
+}
+ nav{
+ background-color:#b7b7ff;
+ }
 
 * {
 	font-family: 'Black Han Sans', sans-serif;

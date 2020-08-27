@@ -18,6 +18,7 @@
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/custom.css">
+
 <title>프로젝트 게시판 웹사이트</title>
 
 </head>
@@ -32,77 +33,78 @@
 	%>
 
 	<!-- 네비게이션  -->
+	
+		<nav class="navbar navbar-default">
 
-	<nav class="navbar navbar-default">
+			<div class="navbar-header">
 
-		<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expaned="false">
 
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-				aria-expaned="false">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				</button>
 
-			</button>
+				<a class="navbar-brand" href="main.jsp">kobalja의 게시판</a>
 
-			<a class="navbar-brand" href="main.jsp">kobalja의 게시판</a>
+			</div>
 
-		</div>
+			<div class="collapse navbar-collapse"
+				id="#bs-example-navbar-collapse-1">
 
-		<div class="collapse navbar-collapse"
-			id="#bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
 
-			<ul class="nav navbar-nav">
+					<li class="active"><a href="main.jsp">메인</a></li>
+					<!-- <--- 현재 접속 페이지가 메인이란 걸 알려줌 -->
 
-				<li class="active"><a href="main.jsp">메인</a></li>
-				<!-- <--- 현재 접속 페이지가 메인이란 걸 알려줌 -->
+					<li><a href="bbs.jsp">게시판</a></li>
 
-				<li><a href="bbs.jsp">게시판</a></li>
+				</ul>
+				<%
+					if (userID == null) {
+				%>
+				<ul class="nav navbar-nav navbar-right">
 
-			</ul>
-			<%
-				if (userID == null) {
-			%>
-			<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">접속하기<span class="caret"></span></a>
 
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">접속하기<span class="caret"></span></a>
+						<ul class="dropdown-menu">
 
-					<ul class="dropdown-menu">
+							<li><a href="login.jsp">로그인</a></li>
+							<li><a href="join.jsp">회원가입</a></li>
 
-						<li><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">회원가입</a></li>
+						</ul></li>
+				</ul>
+				<%
+					} else {
+				%>
+				<ul class="nav navbar-nav navbar-right">
 
-					</ul></li>
-			</ul>
-			<%
-				} else {
-			%>
-			<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">회원관리<span class="caret"></span></a>
 
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">회원관리<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="logoutAction.jsp">로그아웃</a></li>
+						</ul></li>
+				</ul>
+				<%
+					}
+				%>
+			</div>
 
-					<ul class="dropdown-menu">
-						<li><a href="logoutAction.jsp">로그아웃</a></li>
-					</ul></li>
-			</ul>
-			<%
-				}
-			%>
-		</div>
-
-	</nav>
+		</nav>
+	
 	<!-- 점보트론 -->
 	<div class="container">
 		<div class="jumbotron">
 			<div class="container">
 				<h1>웹 사이트 소개</h1>
-				<p>부트스트랩 이용한 JSP 웹 사이트</p>
-				<a class="btn btn-primary btn-pull" href="kobalja2020@tistory.com"
+				<p>kobalja 부트스트랩 이용한 JSP 웹 사이트 프로젝트</p>
+				<a class="btn btn-primary btn-pull" href="kobalja_site.html"
 					role="button">관리자에 대해 알아보기</a>
 			</div>
 		</div>
@@ -128,8 +130,7 @@
 			</div>
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 				<span class="glyphicon glyphicon-chevron-left"></span>
-			</a> 
-			<a class="right carousel-control" href="#myCarousel"
+			</a> <a class="right carousel-control" href="#myCarousel"
 				data-slide="next"> <span
 				class="glyphicon glyphicon-chevron-right"></span>
 			</a>
