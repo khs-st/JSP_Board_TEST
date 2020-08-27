@@ -9,5 +9,5 @@ UserDAO,BbsDAO의 dbURL의 로컬호스트를 3306, 아이디는 root 로 동일
 #내 컴퓨터로 커밋 했을 시
 UserDAO,BbsDAO의 dbURL 로컬호스트는 3557, 아이디 root, 비밀번호는 3557
 
-
+#kobalja_site.html은 제 블로그 링크 사이트입니다.
 
