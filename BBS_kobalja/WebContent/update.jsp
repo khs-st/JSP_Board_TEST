@@ -110,7 +110,7 @@
 						<tr>
 							<th colspan="2"
 								style="background-color: #eeeeee; text-allign: center;">게시판
-								글쓰기 양식</th>
+								글수정 양식</th>
 
 						</tr>
 					</thead>
