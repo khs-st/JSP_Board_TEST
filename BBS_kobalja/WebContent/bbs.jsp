@@ -158,7 +158,24 @@ a, a:hover {
 			<%
 				}
 			%>
+			<!-- 회원만넘어가도록 -->
+
+			<%
+				//if logined userID라는 변수에 해당 아이디가 담기고 if not null
+
+			if (session.getAttribute("userID") != null) {
+			%>
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+
+			<%
+				} else {
+			%>
+			<button class="btn btn-primary pull-right"
+				onclick="if(confirm('로그인이 필요합니다.'))location.href='login.jsp';"
+				type="button">글쓰기</button>
+			<%
+				}
+			%>
 		</div>
 	</div>
 
